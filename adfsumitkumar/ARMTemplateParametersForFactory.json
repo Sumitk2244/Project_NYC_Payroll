@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfsumitkumar"
+		},
+		"ls_adlsnycpayrollsumitkumar_accountKey": {
+			"value": ""
+		},
+		"ls_dbnycpayroll_connectionString": {
+			"value": ""
+		},
+		"ls_synapsewssumitkumar_sqlpool_connectionString": {
+			"value": ""
+		},
+		"ls_adlsnycpayrollsumitkumar_properties_typeProperties_url": {
+			"value": "https://adlsnycpayrollsumitkumar.dfs.core.windows.net/"
+		}
+	}
+}
