@@ -1,0 +1,153 @@
+{
+	"name": "Pipeline Load All data into synapse",
+	"properties": {
+		"activities": [
+			{
+				"name": "Dataflow adls AgencyMaster to synapse",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Dataflow adls AgencyMaster to synapse",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "ls_adlsnycpayrollsumitkumar",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "adlsnycpayroll-sumit-kumar/dirstaging"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Coarse"
+				}
+			},
+			{
+				"name": "Dataflow adls EmpMaster to synapse",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Dataflow adls EmpMaster to synapse",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "ls_adlsnycpayrollsumitkumar",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "adlsnycpayroll-sumit-kumar/dirstaging"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Coarse"
+				}
+			},
+			{
+				"name": "Dataflow adls TitleMaster to synapse",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Dataflow adls TitleMaster to synapse",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "ls_adlsnycpayrollsumitkumar",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "adlsnycpayroll-sumit-kumar/dirstaging"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Coarse"
+				}
+			},
+			{
+				"name": "Dataflow sqldb payroll to synapse payroll",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Dataflow adls AgencyMaster to synapse",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Dataflow adls EmpMaster to synapse",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Dataflow adls TitleMaster to synapse",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Dataflow sqldb payroll to synapse payroll",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "ls_adlsnycpayrollsumitkumar",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "adlsnycpayroll-sumit-kumar/dirstaging"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Coarse"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2022-08-28T13:39:22Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

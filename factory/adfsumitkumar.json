@@ -1,0 +1,9 @@
+{
+	"name": "adfsumitkumar",
+	"location": "centralus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "9703aeb9-4371-4ddc-9185-f3fefcf816fb",
+		"tenantId": "9b7cbd77-6d6b-4879-8aba-63d7dfb18472"
+	}
+}
